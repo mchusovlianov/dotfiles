@@ -1,0 +1,90 @@
+super + Escape
+    pkill -USR1 -x sxhkd
+
+super + shift + Return
+    krusader
+
+ctrl + j
+    zim
+
+#Rofi & dmenu
+
+super + d
+    rofi -show drun -show-icons -font "Noto Sans 14"
+
+super + p
+    rofi -show power-menu -modi power-menu:rofi-power-menu
+
+alt + g
+    rofi-mpc
+
+alt + p
+ rofi -show
+
+# Application Keybindings
+
+#Audio Keybindings
+
+XF86AudioRaiseVolume
+        amixer -c 1 -- sset Master 2db+
+
+XF86AudioLowerVolume
+        amixer -c 1 -- sset Master 2db-
+
+XF86AudioMute
+        amixer -c 1 -- sset Master toggle
+
+alt + d
+        amixer -c 1 -- sset Master 2db+
+
+alt + a
+        amixer -c 1 -- sset Master 2db-
+
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+ctrl + shift + period
+    playerctl next
+
+ctrl + shift + comma
+    playerctl previous
+
+XF86AudioStop
+    playerctl stop
+
+alt + {h,j,k,l}
+   mpc {prev,next,play,pause}
+
+#terminal
+super + Return
+    kitty
+
+super + q
+    i3-msg kill
+
+#help
+super + slash
+    /home/mchusovlyanov/opt/bin/sxhkd-help.sh
+
+#Reload sxhkdrc
+alt + shift + r
+    pkill -usr1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+
+# Show clipmenu
+alt + v
+    CM_LAUNCHER=rofi clipmenu \
+        -location 1 \
+        -m -3 \
+        -no-show-icons \
+        -theme-str '* \{ font: 10px; \}' \
+        -theme-str 'listview \{ spacing: 0; \}' \
+        -theme-str 'window \{ width: 20em; \}'
+
+ctrl + alt + s
+    flameshot gui --clipboard

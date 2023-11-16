@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/mchusovlyanov/polybar-collection/scripts/wallz/wallpapers/OliveOrchard_ROW4284986499_1920x1080.jpg' 
