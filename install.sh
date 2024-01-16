@@ -18,7 +18,7 @@ sudo apt-get install -y \
     gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip \
     make build-essential libssl-dev zlib1g-dev libbz2-dev \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev libffi-dev liblzma-dev git fzf
+    xz-utils tk-dev libffi-dev liblzma-dev git fzf ripgrep
 
 if ! [ -d $HOME/build/neovim ]; then
     git clone https://github.com/neovim/neovim ~/build/neovim
