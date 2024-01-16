@@ -7,16 +7,19 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.tmux/plugins/tmuxifier/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
-
 export DEFAULT_USER=mchusovlyanov
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="my-agnoster"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -60,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux ssh-agent httpie gitfast brew golang encode64 docker)
+plugins=(git tmux ssh-agent httpie gitfast brew golang encode64 docker aliases fzf-zsh-plugin fasd zsh-autosuggestions z)
 
 #eval "$(pyenv init -)"
 source $ZSH/oh-my-zsh.sh
@@ -94,8 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /usr/share/fzf/shell/key-bindings.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/fzf/shell/key-bindings.zsh
 
 #[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 #source /usr/share/nvm/nvm.sh
@@ -106,3 +108,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+eval "$(tmuxifier init -)"
