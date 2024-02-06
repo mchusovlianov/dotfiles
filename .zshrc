@@ -7,7 +7,9 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.tmux/plugins/tmuxifier/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
@@ -111,3 +113,16 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 
 eval "$(tmuxifier init -)"
+
+lg()
+{
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
+

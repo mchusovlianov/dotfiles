@@ -1,32 +1,50 @@
--- Shorten function name
 local keymap = vim.keymap.set
--- Silent keymap option
-local opts = { silent = true }
+local opts = { noremap = true, silent = true }
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+keymap("n", "<Space>", "", opts)
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
+keymap("n", "<C-i>", "<C-i>", opts)
 
--- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<m-h>", "<C-w>h", opts)
+keymap("n", "<m-j>", "<C-w>j", opts)
+keymap("n", "<m-k>", "<C-w>k", opts)
+keymap("n", "<m-l>", "<C-w>l", opts)
+keymap("n", "<m-tab>", "<c-6>", opts)
 
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "n", "nzz", opts)
+keymap("n", "N", "Nzz", opts)
+keymap("n", "*", "*zz", opts)
+keymap("n", "#", "#zz", opts)
+keymap("n", "g*", "g*zz", opts)
+keymap("n", "g#", "g#zz", opts)
+
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
+keymap("x", "p", [["_dP]])
+
+vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]]
+vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
+-- vim.cmd [[:amenu 10.120 mousemenu.-sep- *]]
+
+vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
+vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
+
+-- more good
+keymap({ "n", "o", "x" }, "<s-h>", "^", opts)
+keymap({ "n", "o", "x" }, "<s-l>", "g_", opts)
+
+-- tailwind bearable to work with
+keymap({ "n", "x" }, "j", "gj", opts)
+keymap({ "n", "x" }, "k", "gk", opts)
+keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
+
+
+vim.api.nvim_set_keymap('t', '<esc>', '<C-\\><C-n>', opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -38,11 +56,11 @@ keymap("n", "<S-Right>", ":bprevious<CR>", opts)
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<S-q>", "<cmd>bdelete!<CR>", opts)
 
 -- Better paste
-keymap("v", "p", "P", opts)
-keymap("n", "<leader>w", "diwh2xi", opts)
+-- keymap("v", "p", "P", opts)
+-- keymap("n", "<leader>w", "diwh2xi", opts)
 
 -- Fix indent
 keymap("n", "<leader>=", "gg=G", opts)
@@ -64,22 +82,13 @@ keymap("i", "<C-e>", "<ESC>A", opts)
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
 
--- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
-
--- Plugins --
-
--- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fl", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fg", ":Telescope git_files<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fgb", ":Telescope git_branches<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
